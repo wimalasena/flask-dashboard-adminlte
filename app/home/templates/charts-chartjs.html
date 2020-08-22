@@ -43,6 +43,20 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-6">
+            <!-- STACKED BAR CHART -->
+            <div class="card card-success">
+              <div class="card-header">
+                <h3 class="card-title">Sentiment ratio by channel</h3>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
             <!-- AREA CHART -->
             <div class="card card-primary">
               <div class="card-header">
@@ -157,28 +171,7 @@
             </div>
             <!-- /.card -->
 
-            <!-- STACKED BAR CHART -->
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title">Stacked Bar Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="chart">
-                  <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
+            
 
           </div>
           <!-- /.col (RIGHT) -->
@@ -221,29 +214,40 @@
       var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
 
       var areaChartData = {
-        labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels  : ['Facebook', 'Instagram', 'Linkedin', 'Twiter', 'Web'],
         datasets: [
           {
-            label               : 'Digital Goods',
-            backgroundColor     : 'rgba(60,141,188,0.9)',
+            label               : 'Positive',
+            backgroundColor     : 'rgba(57, 172, 73, 1)',
             borderColor         : 'rgba(60,141,188,0.8)',
             pointRadius          : false,
             pointColor          : '#3b8bba',
             pointStrokeColor    : 'rgba(60,141,188,1)',
             pointHighlightFill  : '#fff',
             pointHighlightStroke: 'rgba(60,141,188,1)',
-            data                : [28, 48, 40, 19, 86, 27, 90]
+            data                : [42, 5, 1, 0, 9]
           },
           {
-            label               : 'Electronics',
-            backgroundColor     : 'rgba(210, 214, 222, 1)',
+            label               : 'Neutral',
+            backgroundColor     : 'rgba(98, 91, 91, 1)',
             borderColor         : 'rgba(210, 214, 222, 1)',
             pointRadius         : false,
             pointColor          : 'rgba(210, 214, 222, 1)',
             pointStrokeColor    : '#c1c7d1',
             pointHighlightFill  : '#fff',
             pointHighlightStroke: 'rgba(220,220,220,1)',
-            data                : [65, 59, 80, 81, 56, 55, 40]
+            data                : [22, 1, 2, 0, 1]
+          },
+          {
+            label               : 'Negative',
+            backgroundColor     : 'rgba(180, 8, 8, 1)',
+            borderColor         : 'rgba(60,141,188,0.8)',
+            pointRadius          : false,
+            pointColor          : '#3b8bba',
+            pointStrokeColor    : 'rgba(60,141,188,1)',
+            pointHighlightFill  : '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data                : [4, 1, 0, 0, 0]
           },
         ]
       }
