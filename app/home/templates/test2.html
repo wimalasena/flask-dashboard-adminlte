@@ -49,7 +49,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <canvas id="stackedBarChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                  <canvas id="chart1" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -59,20 +59,15 @@
             <!-- AREA CHART -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Area Chart</h3>
+                <h3 class="card-title">Sources</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
+                  
                 </div>
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <canvas id="areaChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                  <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -94,7 +89,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                <canvas id="donutChart1" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
               </div>
               <!-- /.card-body -->
             </div>
@@ -124,23 +119,18 @@
           </div>
           <!-- /.col (LEFT) -->
           <div class="col-md-6">
-            <!-- LINE CHART -->
+            <!-- Donut CHART -->
             <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Line Chart</h3>
+                <h3 class="card-title">Positive - Negative Sentiment Ratio</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
+                  
                 </div>
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <canvas id="lineChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                  <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -199,103 +189,55 @@
   <script src="/static/assets/js/demo.js"></script>
   <!-- page script -->
   <script>
-    $(function () {
-      /* ChartJS
-      * -------
-      * Here we will create a few charts using ChartJS
-      */
-
-      //--------------
-      //- AREA CHART -
-      //--------------
-
-      // Get context with jQuery - using jQuery's .get() method.
-      var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
-
-      var areaChartData = {
-        labels  : ['Facebook', 'Instagram', 'Linkedin', 'Twiter', 'Web'],
+    //STACKED BAR CHART for Sentiment ratio by channel
+    var ctx = document.getElementById('chart1');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      type: 'horizontalBar',
+      data: {
+        labels: ['Facebook', 'Instagram', 'Linkedin', 'Twiter', 'Web'],
         datasets: [
           {
-            label               : 'Positive',
-            backgroundColor     : 'rgba(57, 172, 73, 1)',
-            borderColor         : 'rgba(60,141,188,0.8)',
-            pointRadius          : false,
-            pointColor          : '#3b8bba',
-            pointStrokeColor    : 'rgba(60,141,188,1)',
-            pointHighlightFill  : '#fff',
-            pointHighlightStroke: 'rgba(60,141,188,1)',
-            data                : [42, 5, 1, 0, 9]
+            label: 'Positive',
+            data: [42, 5, 1, 0, 9],
+            backgroundColor: 'rgba(57, 172, 73, 1)',
           },
           {
-            label               : 'Neutral',
-            backgroundColor     : 'rgba(98, 91, 91, 1)',
-            borderColor         : 'rgba(210, 214, 222, 1)',
-            pointRadius         : false,
-            pointColor          : 'rgba(210, 214, 222, 1)',
-            pointStrokeColor    : '#c1c7d1',
-            pointHighlightFill  : '#fff',
-            pointHighlightStroke: 'rgba(220,220,220,1)',
-            data                : [22, 1, 2, 0, 1]
+            label: 'Neutral',
+            data: [22, 1, 2, 0, 1],
+            backgroundColor: 'rgba(98, 91, 91, 1)',
           },
           {
-            label               : 'Negative',
-            backgroundColor     : 'rgba(180, 8, 8, 1)',
-            borderColor         : 'rgba(60,141,188,0.8)',
-            pointRadius          : false,
-            pointColor          : '#3b8bba',
-            pointStrokeColor    : 'rgba(60,141,188,1)',
-            pointHighlightFill  : '#fff',
-            pointHighlightStroke: 'rgba(60,141,188,1)',
-            data                : [4, 1, 0, 0, 0]
-          },
+            label: 'Negative',
+            data: [4, 1, 0, 0, 0],
+            backgroundColor: 'rgba(180, 8, 8, 1)',
+          }
         ]
-      }
-
-      var areaChartOptions = {
-        maintainAspectRatio : false,
-        responsive : true,
-        legend: {
-          display: false
-        },
+      },
+      options: {
         scales: {
-          xAxes: [{
-            gridLines : {
-              display : false,
-            }
-          }],
-          yAxes: [{
-            gridLines : {
-              display : false,
-            }
-          }]
+          xAxes: [{ stacked: true }],
+          yAxes: [{ stacked: true }]
         }
       }
+    });
+    // End of Sentiment ratio by channel
 
-      // This will get the first returned node in the jQuery collection.
-      var areaChart       = new Chart(areaChartCanvas, {
-        type: 'line',
-        data: areaChartData,
-        options: areaChartOptions
-      })
-
-      //-------------
+    //-------------
       //- DONUT CHART -
       //-------------
       // Get context with jQuery - using jQuery's .get() method.
       var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
       var donutData        = {
         labels: [
-            'Chrome',
-            'IE',
-            'FireFox',
-            'Safari',
-            'Opera',
-            'Navigator',
+            'Positive',
+            'Neutral',
+            'Negative',
         ],
         datasets: [
           {
-            data: [700,500,400,600,300,100],
-            backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+            data: [26,5,0],
+            backgroundColor : ['rgba(57, 172, 73, 1)', 'rgba(98, 91, 91, 1)', 'rgba(180, 8, 8, 1)'],
           }
         ]
       }
@@ -311,71 +253,29 @@
         options: donutOptions
       })
 
-      //-------------
-      //- PIE CHART -
-      //-------------
-      // Get context with jQuery - using jQuery's .get() method.
-      var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-      var pieData        = donutData;
-      var pieOptions     = {
-        maintainAspectRatio : false,
-        responsive : true,
-      }
-      //Create pie or douhnut chart
-      // You can switch between pie and douhnut using the method below.
-      var pieChart = new Chart(pieChartCanvas, {
-        type: 'pie',
-        data: pieData,
-        options: pieOptions
-      })
+      // End of Donut chart
 
-      //-------------
-      //- BAR CHART -
-      //-------------
-      var barChartCanvas = $('#barChart').get(0).getContext('2d')
-      var barChartData = $.extend(true, {}, areaChartData)
-      var temp0 = areaChartData.datasets[0]
-      var temp1 = areaChartData.datasets[1]
-      barChartData.datasets[0] = temp1
-      barChartData.datasets[1] = temp0
+      //Pie Chart
+      $(function() {
+        var ctx = $("#myChart").get(0).getContext("2d");
 
-      var barChartOptions = {
-        responsive              : true,
-        maintainAspectRatio     : false,
-        datasetFill             : false
-      }
+        var data = {
+            datasets: [{
+                data: [12, 72, 7, 3, 5],
+                backgroundColor: ["#AED6F1", "#5DADE2", "#3498DB", "#2E86C1", "#1B4F72"],
+                //hoverBackgroundColor: ["lightskyblue", "yellow", "darkorange"]
+            }],
+            labels: ["Web", "Facebook", "Instagram", "Twitter", "LinkedIN"]
+        };
 
-      var barChart = new Chart(barChartCanvas, {
-        type: 'bar',
-        data: barChartData,
-        options: barChartOptions
-      })
+        var piechart = new Chart(ctx, {
+            type: 'pie',
+            data: data
+        });
+      });
 
-      //---------------------
-      //- STACKED BAR CHART -
-      //---------------------
-      var stackedBarChartCanvas = $('#stackedBarChart').get(0).getContext('2d')
-      var stackedBarChartData = $.extend(true, {}, barChartData)
+      // End of Pie Chart
 
-      var stackedBarChartOptions = {
-        responsive              : true,
-        maintainAspectRatio     : false,
-        scales: {
-          xAxes: [{
-            stacked: true,
-          }],
-          yAxes: [{
-            stacked: true
-          }]
-        }
-      }
-
-      var stackedBarChart = new Chart(stackedBarChartCanvas, {
-        type: 'horizontalBar',
-        data: stackedBarChartData,
-        options: stackedBarChartOptions
-      })
-    })
   </script>
 
 {% endblock javascripts %}
