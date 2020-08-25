@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} ChartsJS {% endblock %} 
+{% block title %} SENTIMENT ANALYSIS {% endblock %} 
 
 <!-- Element injected in the BODY element -->
 {% block body_class %} sidebar-mini {% endblock body_class %}
@@ -122,7 +122,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                  <canvas id="myChart" style="min-height: 200px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -308,7 +308,7 @@
       var speedCanvas = document.getElementById("speedChart");
 
         Chart.defaults.global.defaultFontFamily = "Lato";
-        Chart.defaults.global.defaultFontSize = 18;
+        Chart.defaults.global.defaultFontSize = 16;
 
         var data_web = {
             label: "reach",
