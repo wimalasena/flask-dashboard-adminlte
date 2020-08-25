@@ -256,11 +256,7 @@
       // Get context with jQuery - using jQuery's .get() method.
       var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
       var donutData        = {
-        labels: [
-            'Positive',
-            'Neutral',
-            'Negative',
-        ],
+        labels: ['Positive','Neutral','Negative'],
         datasets: [
           {
             data: [26,5,0],
@@ -283,23 +279,30 @@
       // End of Donut chart - Positive - Negative Sentiment Ratio
 
       //Pie Chart
-      $(function() {
-        var ctx = $("#myChart").get(0).getContext("2d");
-
-        var data = {
-            datasets: [{
-                data: [12, 72, 7, 3, 5],
-                backgroundColor: ["#5ce1e6", "#3b5998", "#de457e", "#00acee", "#0e76a8"],
-                //hoverBackgroundColor: ["lightskyblue", "yellow", "darkorange"]
-            }],
-            labels: ["Web", "Facebook", "Instagram", "Twitter", "LinkedIN"]
-        };
-
-        var piechart = new Chart(ctx, {
-            type: 'pie',
-            data: data
-        });
-      });
+      var donutChartCanvas1 = $('#myChart').get(0).getContext('2d')
+      var donutData1        = {
+        labels: ["Web", "Facebook", "Instagram", "Twitter", "LinkedIN"],
+        datasets: [
+          {
+            data: [12, 72, 7, 3, 5],
+            backgroundColor : ["#5ce1e6", "#3b5998", "#de457e", "#00acee", "#0e76a8"],
+          }
+        ]
+      }
+      var donutOptions1     = {
+        maintainAspectRatio : false,
+        responsive : true,
+        legend: {
+                position: 'right',
+                }
+      }
+      //Create pie or douhnut chart
+      // You can switch between pie and douhnut using the method below.
+      var donutChart1 = new Chart(donutChartCanvas1, {
+        type: 'pie',
+        data: donutData1,
+        options: donutOptions1
+      })
 
       // End of Pie Chart
 
